@@ -18,8 +18,12 @@ export const sky = {
 };
 
 export const airplane = {
-  pink: "#F4CCF4",
-  yellow: "#F4F4CC",
-  blue: "#CCE0F4",
-  green: "#CCF4E0",
+  white: "#FFFFFF",
+  brown: "#59332e",
+  darkBrown: "#23190f",
+  red: "#FF0000",
+  puple: "#9900FF",
+  yellow: "#FFFF00",
+  blue: "#0000FF",
+  green: "#00FF00",
 };
