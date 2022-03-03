@@ -13,5 +13,5 @@ body,
 }
 
 .canvas {
-  background-color: #E6FAFA;
+  background: linear-gradient(#aacff1, #ebecb6);
 }

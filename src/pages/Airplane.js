@@ -1,17 +1,11 @@
-import React, { useEffect } from "react";
+import { useFrame, useThree } from "@react-three/fiber";
+import { Physics, useBox } from "@react-three/cannon";
 
 import { CreateAirPlane } from "../components/Airplane";
-
-const WIDTH = window.innerWidth;
-const HEIGHT = window.innerHeight;
-const windowHalfX = WIDTH / 2;
-const windowHalfY = HEIGHT / 2;
-const smoothing = 100;
-const speed = { x: 0, y: 0 };
-let mousePos = { x: 0, y: 0 };
+import { useCollide } from "../components/Obstacle";
 
 const airplane = new CreateAirPlane();
-airplane.mesh.scale.set(0.15, 0.15, 0.15);
+airplane.mesh.scale.set(0.035, 0.035, 0.035);
 airplane.mesh.rotateY(-80);
 
 airplane.castShadow = true;
@@ -19,42 +13,37 @@ airplane.castShadow = true;
 function loop() {
   airplane.propeller.rotation.x += 0.3;
 
-  airplane.mesh.position.x +=
-    (mousePos.x - windowHalfX - airplane.mesh.position.x) / smoothing;
-  airplane.mesh.position.y +=
-    (-speed.y * 10 - airplane.mesh.position.y) / smoothing;
-
   requestAnimationFrame(loop);
 }
 
-function updateSpeed() {
-  speed.x = (mousePos.x / WIDTH) * 100;
-  speed.y = (mousePos.y - windowHalfY) / 10;
-}
-
-function handleMouseMove(event) {
-  mousePos = {
-    x: event.clientX,
-    y: event.clientY,
-  };
-
-  updateSpeed();
-}
+loop();
 
 function AirPlane() {
-  useEffect(() => {
-    document.addEventListener("mousemove", handleMouseMove, false);
+  const { viewport } = useThree();
+  const { width, height } = viewport;
+  const [, onCollide] = useCollide();
 
-    loop();
+  const [ref, api] = useBox(() => ({
+    type: "Kinematic",
+    args: [2.25, 0.75, 1],
+    onCollide,
+  }));
 
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove, false);
-    };
-  }, [mousePos]);
+  useFrame((state) => {
+    api.position.set(
+      state.mouse.x * (width / 2 + 2),
+      state.mouse.y * (height / 2 + 2),
+      0
+    );
+
+    api.rotation.set(0, 1.5, (state.mouse.x * Math.PI) / 5);
+  });
 
   return (
     <>
-      <primitive object={airplane.mesh} position={[0, 0, -1]} />
+      <Physics>
+        <primitive ref={ref} object={airplane.mesh} position={[0, 0, -1]} />
+      </Physics>
     </>
   );
 }

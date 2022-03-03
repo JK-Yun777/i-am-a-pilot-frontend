@@ -21,6 +21,7 @@ export const airplane = {
   white: "#FFFFFF",
   brown: "#59332e",
   darkBrown: "#23190f",
+  pink: "#F4CCF4",
   red: "#FF0000",
   puple: "#9900FF",
   yellow: "#FFFF00",
