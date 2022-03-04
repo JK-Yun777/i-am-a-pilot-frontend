@@ -4,6 +4,7 @@ import { useSphere } from "@react-three/cannon";
 import { Sphere } from "@react-three/drei";
 
 import { useStore } from "../../utils/store";
+import { color } from "../../utils/color";
 
 function Ball(props) {
   const [ref, api] = useSphere(() => ({
@@ -22,7 +23,7 @@ function Ball(props) {
   }, [restart]);
   return (
     <Sphere castShadow ref={ref} args={[0.4, 64, 64]}>
-      <meshStandardMaterial color="pink" />
+      <meshStandardMaterial color={color.pink} />
     </Sphere>
   );
 }

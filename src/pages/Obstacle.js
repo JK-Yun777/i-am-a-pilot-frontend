@@ -1,7 +1,11 @@
+import React, { useEffect } from "react";
+
 import Cube from "../components/Obstacle/Cube";
 import Rock from "../components/Obstacle/Rock";
 import Ball from "../components/Obstacle/Ball";
 import Heart from "../components/Obstacle/Heart";
+
+import { useStore } from "../utils/store";
 
 const positions = [
   [9, 5, 0],
@@ -16,6 +20,15 @@ const positions = [
 ];
 
 function Obstacle() {
+  const distance = useStore((state) => state.distance);
+  useEffect(() => {
+    if (distance % 2) {
+      positions.push([Math.random() * 20, Math.random() * 10, 0]);
+    }
+
+    positions.push([Math.random() * -20, Math.random() * 20, Math.random()]);
+  }, [distance, positions]);
+
   return (
     <>
       {positions.map((position, idx) => (

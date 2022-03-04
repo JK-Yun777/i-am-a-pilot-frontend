@@ -1,13 +1,13 @@
 import * as THREE from "three";
 
-import { airplane } from "../../utils/color";
+import { color } from "../../utils/color";
 
 export function CreateAirPlane() {
   this.mesh = new THREE.Object3D();
 
   const cabinGeometry = new THREE.CylinderGeometry(30, 40, 80);
   const cabinMaterial = new THREE.MeshPhongMaterial({
-    color: airplane.red,
+    color: color.red,
     flatShading: true,
   });
   const cabin = new THREE.Mesh(cabinGeometry, cabinMaterial);
@@ -19,7 +19,7 @@ export function CreateAirPlane() {
 
   const engineGeomety = new THREE.BoxGeometry(20, 50, 50);
   const engineMaterial = new THREE.MeshPhongMaterial({
-    color: airplane.white,
+    color: color.white,
     flatShading: true,
   });
   const engine = new THREE.Mesh(engineGeomety, engineMaterial);
@@ -42,7 +42,7 @@ export function CreateAirPlane() {
 
   const wingGeometry = new THREE.BoxGeometry(40, 8, 150);
   const wingMaterial = new THREE.MeshPhongMaterial({
-    color: airplane.red,
+    color: color.red,
     flatShading: true,
   });
   const wing = new THREE.Mesh(wingGeometry, wingMaterial);
@@ -52,7 +52,7 @@ export function CreateAirPlane() {
 
   const propellerGeometry = new THREE.BoxGeometry(20, 10, 10);
   const propellerMaterial = new THREE.MeshPhongMaterial({
-    color: airplane.brown,
+    color: color.brown,
     flatShading: true,
   });
   this.propeller = new THREE.Mesh(propellerGeometry, propellerMaterial);
@@ -61,7 +61,7 @@ export function CreateAirPlane() {
 
   const propellerShaftGeom = new THREE.BoxGeometry(1, 100, 20);
   const propellerShaftMat = new THREE.MeshPhongMaterial({
-    color: airplane.darkBrown,
+    color: color.darkBrown,
     flatShading: true,
   });
 

@@ -4,6 +4,8 @@ import * as THREE from "three";
 import { useSphere } from "@react-three/cannon";
 import { Extrude } from "@react-three/drei";
 
+import { color } from "../../utils/color";
+
 function Heart(props) {
   const [ref] = useSphere(() => ({
     mass: 1,
@@ -30,7 +32,7 @@ function Heart(props) {
         rotation={[0, 0, Math.PI]}
         scale={[2, 2, 2]}
         args={extrusionProps}
-        material-color="hotpink"
+        material-color={color.hotpink}
       />
     </group>
   );

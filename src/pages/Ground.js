@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 
 import { useFrame } from "@react-three/fiber";
 
-import { ground } from "../utils/color";
+import { color } from "../utils/color";
 
 function Ground() {
   const mesh = useRef();
@@ -15,7 +15,7 @@ function Ground() {
     <group rotation={[-Math.PI / 2, 0, 0]} position={[0, -30, 0]} scale={26}>
       <mesh receiveShadow ref={mesh}>
         <dodecahedronGeometry args={[1, 0]} roughness />
-        <meshStandardMaterial color={ground.ground6} />
+        <meshStandardMaterial color={color.ground} />
       </mesh>
     </group>
   );
