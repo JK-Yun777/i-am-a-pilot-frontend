@@ -4,7 +4,7 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { Instances, Instance } from "@react-three/drei";
 
-import { airplane } from "../../utils/color";
+import { color } from "../../utils/color";
 
 const particles = Array.from({ length: 30 }, () => ({
   factor: THREE.MathUtils.randInt(20, 50),
@@ -35,7 +35,7 @@ export function Particles() {
       position={[0, 10, 0]}
     >
       <dodecahedronBufferGeometry args={[1, 0]} />
-      <meshStandardMaterial roughness={0} color={airplane.white} />
+      <meshStandardMaterial roughness={0} color={color.white} />
       {particles.map((data, i) => (
         <Particle key={i} {...data} />
       ))}

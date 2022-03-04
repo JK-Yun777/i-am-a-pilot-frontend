@@ -1,5 +1,7 @@
 import { useBox } from "@react-three/cannon";
 
+import { color } from "../../utils/color";
+
 function Cube(props) {
   const [ref] = useBox(() => ({
     mass: 1,
@@ -10,7 +12,7 @@ function Cube(props) {
   return (
     <mesh receiveShadow castShadow ref={ref}>
       <boxGeometry />
-      <meshLambertMaterial color="hotpink" />
+      <meshLambertMaterial color={color.hotpink} />
     </mesh>
   );
 }

@@ -1,6 +1,8 @@
 import { useSphere } from "@react-three/cannon";
 import { Sphere } from "@react-three/drei";
 
+import { color } from "../../utils/color";
+
 function Rock(props) {
   const [ref] = useSphere(() => ({
     mass: 1,
@@ -10,7 +12,7 @@ function Rock(props) {
   }));
   return (
     <Sphere castShadow ref={ref} args={[1, 64, 64]}>
-      <meshStandardMaterial color="red" />
+      <meshStandardMaterial color={color.red} />
     </Sphere>
   );
 }
