@@ -2,11 +2,9 @@ import React, { useRef } from "react";
 
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
-import { Instances, Instance } from "@react-three/drei";
+import { Instance } from "@react-three/drei";
 
-import { color } from "../../utils/color";
-
-const particles = Array.from({ length: 30 }, () => ({
+export const particles = Array.from({ length: 30 }, () => ({
   factor: THREE.MathUtils.randInt(20, 50),
   speed: THREE.MathUtils.randFloat(0.01, 1),
   xFactor: THREE.MathUtils.randFloatSpread(80),
@@ -14,36 +12,7 @@ const particles = Array.from({ length: 30 }, () => ({
   zFactor: THREE.MathUtils.randFloatSpread(40),
 }));
 
-export function Particles() {
-  const ref = useRef();
-
-  useFrame(
-    (state, delta) =>
-      void (ref.current.rotation.y = THREE.MathUtils.damp(
-        ref.current.rotation.y,
-        (-state.mouse.x * Math.PI) / 6,
-        2.75,
-        delta
-      ))
-  );
-  return (
-    <Instances
-      limit={particles.length}
-      ref={ref}
-      castShadow
-      receiveShadow
-      position={[0, 10, 0]}
-    >
-      <dodecahedronBufferGeometry args={[1, 0]} />
-      <meshStandardMaterial roughness={0} color={color.white} />
-      {particles.map((data, i) => (
-        <Particle key={i} {...data} />
-      ))}
-    </Instances>
-  );
-}
-
-function Particle({ factor, speed, xFactor, yFactor, zFactor }) {
+export function Cloud({ factor, speed, xFactor, yFactor, zFactor }) {
   const ref = useRef();
   useFrame((state) => {
     const t = factor + state.clock.elapsedTime * (speed / 2);

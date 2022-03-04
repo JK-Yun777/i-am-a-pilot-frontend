@@ -5,8 +5,8 @@ import { Physics } from "@react-three/cannon";
 import { PresentationControls } from "@react-three/drei";
 
 import { useStore } from "./utils/store";
-import { Particles } from "./components/Particle";
 import AirPlane from "./pages/Airplane";
+import Clouds from "./pages/Clouds";
 import Ground from "./pages/Ground";
 import Obstacle from "./pages/Obstacle";
 import Hearder from "./pages/Hearder";
@@ -64,7 +64,7 @@ function App() {
             >
               <AirPlane />
               <Obstacle />
-              <Particles />
+              <Clouds />
               <Ground />
             </Physics>
           )}
