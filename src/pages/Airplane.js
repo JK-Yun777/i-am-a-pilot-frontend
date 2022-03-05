@@ -2,7 +2,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { Physics, useBox } from "@react-three/cannon";
 
 import { CreateAirPlane } from "../components/Airplane";
-import { useCollide } from "../components/Obstacle";
+import { useCollide } from "../components/BonusObjects";
 
 const airplane = new CreateAirPlane();
 airplane.mesh.scale.set(0.035, 0.035, 0.035);

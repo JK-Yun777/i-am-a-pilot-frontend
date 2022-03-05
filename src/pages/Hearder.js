@@ -1,6 +1,5 @@
-import React, { useRef, useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 
-import { useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 
 import { useStore } from "../utils/store";
@@ -8,7 +7,6 @@ import ProgressBar from "../components/ProgressBar";
 
 function Hearder(props) {
   let initialEnergy = "85";
-  const ref = useRef();
   const startTime = new Date();
   const memoizedTime = useMemo(() => startTime, [startTime]);
   const [runningTime, setRunningTime] = useState(memoizedTime);
@@ -36,27 +34,19 @@ function Hearder(props) {
       clearInterval(interval);
     }
 
-    setRemainEnergy(energy);
+    if (setRemainEnergy) {
+      setRemainEnergy(energy);
+    }
 
     return () => {
       clearInterval(interval);
     };
   }, [memoizedTime, points, energy]);
 
-  useFrame(() => {
-    ref.current.position.x = -5;
-    ref.current.position.y = 14;
-  });
   return (
-    <group ref={ref} {...props}>
+    <group {...props}>
       <mesh>
-        <Html
-          scale={350}
-          rotation={[Math.PI / 2, 0, 0]}
-          position={[180, -350, 50]}
-          transform
-          occlude
-        >
+        <Html>
           <div className="header">
             <h1>I am a Pilot</h1>
             <h2>Fasten your Seat Belt</h2>

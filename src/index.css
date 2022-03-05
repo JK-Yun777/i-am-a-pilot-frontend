@@ -28,16 +28,16 @@ body,
 
 .header h1 {
   font-family: "Playfair Display";
-  font-size: 2.5em;
+  font-size: 1.7em;
   line-height: 1;
-  margin: 1em 0 0.3em 2em;
+  margin: 0 0 0.3em 2em;
   white-space: nowrap;
   letter-spacing: -0.025em;
   color: #d1b790;
 }
 
 .header h2 {
-  font-size: 0.985em;
+  font-size: 0.675em;
   margin: 0.25em 0 0 2.5em;
   white-space: nowrap;
   text-indent: 1em;
@@ -48,7 +48,7 @@ body,
 
 .score {
   width: 100%;
-  margin: 2em 0 0 2.5em;
+  margin: 1em 0 0 0.5em;
   text-align: center;
   white-space: nowrap;
 }
@@ -61,12 +61,11 @@ body,
 }
 
 .score-content:nth-child(2) {
-  border-right: 1px solid #d1b790;
   border-left: 1px solid #d1b790;
 }
 
 .score-label {
-  font-size: 20px;
+  font-size: 14px;
   position: relative;
   margin: 0 0 0.5em 0;
   text-align: center;
@@ -82,5 +81,35 @@ body,
 }
 
 .score-value-distance {
-  font-size: 30px;
+  font-size: 21px;
+}
+
+.kakao-login-btn {
+  background-image: url("/src/images/kakao_login_medium_wide.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 10px auto;
+  /* padding: -10px; */
+  color: transparent;
+  width: 300px;
+  height: 45px;
+}
+
+.loading-container {
+  position: absolute;
+  top: 1vh;
+  left: -5em;
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+}
+
+.loading {
+  font-family: "Playfair Display";
+  font-size: 3.5em;
+  line-height: 1;
+  /* margin: 1em 0 0.3em 0; */
+  white-space: nowrap;
+  letter-spacing: -0.025em;
+  color: #d1b790;
 }

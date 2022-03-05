@@ -4,18 +4,23 @@ import { useFrame } from "@react-three/fiber";
 
 import { color } from "../utils/color";
 
-function Ground() {
-  const mesh = useRef();
+function Ground({ position, rotationSpeed }) {
+  let ref = useRef();
 
   useFrame(() => {
-    mesh.current.rotation.x += 0.01;
+    ref.current.rotation.x += rotationSpeed;
   });
-
   return (
-    <group rotation={[-Math.PI / 2, 0, 0]} position={[0, -30, 0]} scale={26}>
-      <mesh receiveShadow ref={mesh}>
-        <dodecahedronGeometry args={[1, 0]} roughness />
-        <meshStandardMaterial color={color.ground} />
+    <group>
+      <mesh
+        ref={ref}
+        castShadow
+        receiveShadow
+        position={position}
+        rotation-y="10"
+      >
+        <sphereGeometry args={[250, 8, 40]} />
+        <meshPhongMaterial color={color.ground} transparent flatShading />
       </mesh>
     </group>
   );

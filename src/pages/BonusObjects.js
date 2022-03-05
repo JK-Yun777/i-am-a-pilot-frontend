@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 
-import Cube from "../components/Obstacle/Cube";
-import Rock from "../components/Obstacle/Rock";
-import Ball from "../components/Obstacle/Ball";
-import Heart from "../components/Obstacle/Heart";
+import Cube from "../components/BonusObjects/Cube";
+import Rock from "../components/BonusObjects/Rock";
+import Ball from "../components/BonusObjects/Ball";
+import Heart from "../components/BonusObjects/Heart";
 
 import { useStore } from "../utils/store";
 
