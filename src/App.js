@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import KakaoRedirectHandler from "./components/KakaoRedirectHandler";
 import Main from "./pages/Main";
 import Game from "./pages/Game";
-import Rank from "./pages/Rank";
+import Ranking from "./pages/Ranking";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
           <Game />
         </Route>
         <Route path="/rank" exact>
-          <Rank />
+          <Ranking />
         </Route>
       </Switch>
     </BrowserRouter>

@@ -13,4 +13,5 @@ export const color = {
   yellow: "#FFFF00",
   blue: "#0000FF",
   green: "#00FF00",
+  rankTitle: "#3b618e",
 };

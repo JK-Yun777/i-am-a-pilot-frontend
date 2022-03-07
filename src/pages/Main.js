@@ -14,7 +14,7 @@ function Main() {
         fov: 70,
       }}
     >
-      <Hearder position={[-4, 14, 0]} scale={0.001} />
+      <Hearder position={[-5, 14, 0]} scale={0.001} />
       <Login
         rotation={[-Math.PI / 2, 0, 0]}
         position={[0, 0.25, 0]}

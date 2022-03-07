@@ -42,3 +42,15 @@ export const sendGameResult = async (email, distance) => {
 
   return result;
 };
+
+export const getRankList = async () => {
+  try {
+    const response = await axios({
+      method: "get",
+      url: `${process.env.REACT_APP_SERVER_URL}/user/rank`,
+    });
+    return response;
+  } catch (err) {
+    return err.message;
+  }
+};

@@ -8,12 +8,15 @@ const useStore = create((set) => ({
   points: 0,
   startup: true,
   restart: false,
-  userEmail: null,
+  userEmail: false,
   start: () => {
     set({ startup: false });
   },
   login: (data) => {
     set({ userEmail: data });
+  },
+  logout: () => {
+    set({ userEmail: false });
   },
   getDistance: (time) => {
     if (time) {
