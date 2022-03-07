@@ -65,7 +65,7 @@ function Game() {
             azimuth={[-Math.PI / 1.4, Math.PI / 2]}
           >
             <Hearder
-              position={[-4, 14, 0]}
+              position={[-5, 14, 0]}
               scale={0.001}
               setRemainEnergy={setRemainEnergy}
             />

@@ -17,6 +17,10 @@ body,
   background: linear-gradient(#aacff1, #ebecb6);
 }
 
+.ranking-canvas {
+  background: linear-gradient(#40474e, #727261);
+}
+
 .header {
   position: absolute;
   top: 6vh;
@@ -112,4 +116,29 @@ body,
   white-space: nowrap;
   letter-spacing: -0.025em;
   color: #d1b790;
+}
+
+.rank-container {
+  width: 100%;
+  margin: 1em 0 0 0.5em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.rank-content {
+  position: relative;
+  display: inline-block;
+  padding: 0 1em;
+  vertical-align: top;
+}
+
+.rank-label {
+  font-size: 40px;
+  font-weight: bold;
+  position: relative;
+  margin: 0.3em 0 0.5em 0.9em;
+  text-align: center;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #90aed1;
 }
