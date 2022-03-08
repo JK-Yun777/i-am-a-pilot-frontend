@@ -11,7 +11,7 @@ import AirPlane from "../pages/Airplane";
 import Clouds from "../pages/Clouds";
 import Ground from "../pages/Ground";
 import BonusObjects from "./BonusObjects";
-import Hearder from "../pages/Hearder";
+import GameHearder from "./GameHearder";
 import Startup from "../pages/StartUp";
 import GameOver from "../pages/GameOver";
 
@@ -64,7 +64,7 @@ function Game() {
             polar={[-Math.PI / 3, Math.PI / 3]}
             azimuth={[-Math.PI / 1.4, Math.PI / 2]}
           >
-            <Hearder
+            <GameHearder
               position={[-5, 14, 0]}
               scale={0.001}
               setRemainEnergy={setRemainEnergy}

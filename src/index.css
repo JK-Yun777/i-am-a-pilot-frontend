@@ -142,3 +142,27 @@ body,
   text-transform: uppercase;
   color: #90aed1;
 }
+
+#blue {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  background-color: #80ced7;
+}
+
+#flax {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  background-color: #e9d985;
+}
+
+#red {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  background-color: #bf211e;
+}

@@ -1,27 +1,16 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { Physics, useBox } from "@react-three/cannon";
 
-import { CreateAirPlane } from "../components/Airplane";
+import { useStore } from "../utils/store";
+
+import { Plane } from "../components/Airplane";
 import { useCollide } from "../components/BonusObjects";
-
-const airplane = new CreateAirPlane();
-airplane.mesh.scale.set(0.035, 0.035, 0.035);
-airplane.mesh.rotateY(-80);
-
-airplane.castShadow = true;
-
-function loop() {
-  airplane.propeller.rotation.x += 0.3;
-
-  requestAnimationFrame(loop);
-}
-
-loop();
 
 function AirPlane() {
   const { viewport } = useThree();
   const { width, height } = viewport;
   const [, onCollide] = useCollide();
+  const airplaneColor = useStore((state) => state.airplaneColor);
 
   const [ref, api] = useBox(() => ({
     type: "Kinematic",
@@ -42,7 +31,9 @@ function AirPlane() {
   return (
     <>
       <Physics>
-        <primitive ref={ref} object={airplane.mesh} position={[0, 0, -1]} />
+        <mesh ref={ref}>
+          <Plane airplaneColor={airplaneColor} />
+        </mesh>
       </Physics>
     </>
   );

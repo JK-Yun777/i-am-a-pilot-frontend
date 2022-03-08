@@ -1,8 +1,8 @@
-// import React, { useState, useMemo, useEffect } from "react";
-
 import { Html } from "@react-three/drei";
 
-function RankHearder(props) {
+function Header(props) {
+  const { hearderTitle } = props;
+
   return (
     <group {...props}>
       <mesh>
@@ -12,7 +12,7 @@ function RankHearder(props) {
             <h2>Fasten your Seat Belt</h2>
             <div className="rank-container ">
               <div className="rank-content">
-                <div className="rank-label">Rank</div>
+                <div className="rank-label">{hearderTitle}</div>
               </div>
             </div>
           </div>
@@ -22,4 +22,4 @@ function RankHearder(props) {
   );
 }
 
-export default RankHearder;
+export default Header;

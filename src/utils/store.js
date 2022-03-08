@@ -9,8 +9,12 @@ const useStore = create((set) => ({
   startup: true,
   restart: false,
   userEmail: false,
+  airplaneColor: null,
   start: () => {
     set({ startup: false });
+  },
+  setColor: (data) => {
+    set({ airplaneColor: data });
   },
   login: (data) => {
     set({ userEmail: data });
