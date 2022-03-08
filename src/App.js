@@ -4,6 +4,7 @@ import KakaoRedirectHandler from "./components/KakaoRedirectHandler";
 import Main from "./pages/Main";
 import Game from "./pages/Game";
 import Ranking from "./pages/Ranking";
+import Select from "./pages/Select";
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
         </Route>
         <Route path="/rank" exact>
           <Ranking />
+        </Route>
+        <Route path="/select" exact>
+          <Select />
         </Route>
       </Switch>
     </BrowserRouter>

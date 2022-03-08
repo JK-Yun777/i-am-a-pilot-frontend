@@ -14,4 +14,6 @@ export const color = {
   blue: "#0000FF",
   green: "#00FF00",
   rankTitle: "#3b618e",
+  black: "#000000",
+  mainTitle: "#9D693D",
 };

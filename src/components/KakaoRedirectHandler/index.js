@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import { Canvas } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
 
-import Hearder from "../../pages/Hearder";
+import Hearder from "../../components/Header";
 import { getKakaoToken, kakaoLogin } from "../../api";
 import { useStore } from "../../utils/store";
 
@@ -64,7 +64,7 @@ function KakaoRedirectHandler() {
         fov: 70,
       }}
     >
-      <Hearder position={[-4, 14, 0]} scale={0.001} />
+      <Hearder position={[-5, 14, 0]} scale={0.001} />
       <mesh>
         <Html>
           <div className="loading-container ">

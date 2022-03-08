@@ -1,75 +1,76 @@
-import * as THREE from "three";
+import React, { useRef, forwardRef } from "react";
+
+import { useFrame } from "@react-three/fiber";
 
 import { color } from "../../utils/color";
 
-export function CreateAirPlane() {
-  this.mesh = new THREE.Object3D();
+export function Cabin(props) {
+  const ref = useRef();
+  const { airplaneColor } = props;
 
-  const cabinGeometry = new THREE.CylinderGeometry(30, 40, 80);
-  const cabinMaterial = new THREE.MeshPhongMaterial({
-    color: color.red,
-    flatShading: true,
-  });
-  const cabin = new THREE.Mesh(cabinGeometry, cabinMaterial);
-  cabin.position.x = -10;
-  cabin.rotateZ(33);
-  cabin.castShadow = true;
-  cabin.receiveShadow = true;
-  this.mesh.add(cabin);
-
-  const engineGeomety = new THREE.BoxGeometry(20, 50, 50);
-  const engineMaterial = new THREE.MeshPhongMaterial({
-    color: color.white,
-    flatShading: true,
-  });
-  const engine = new THREE.Mesh(engineGeomety, engineMaterial);
-  engine.position.x = 40;
-  engine.castShadow = true;
-  engine.receiveShadow = true;
-  this.mesh.add(engine);
-
-  // const tailGeometry = new THREE.ConeGeometry(11, 32);
-  // const tailMaterial = new THREE.MeshPhongMaterial({
-  //   color: airplan.red,
-  //   flatShading: true,
-  // });
-  // const tail = new THREE.Mesh(tailGeometry, tailMaterial);
-  // tail.position.set(-80, 6, 0);
-  // tail.rotateZ(20);
-  // tail.castShadow = true;
-  // tail.receiveShadow = true;
-  // this.mesh.add(tail);
-
-  const wingGeometry = new THREE.BoxGeometry(40, 8, 150);
-  const wingMaterial = new THREE.MeshPhongMaterial({
-    color: color.red,
-    flatShading: true,
-  });
-  const wing = new THREE.Mesh(wingGeometry, wingMaterial);
-  wing.castShadow = true;
-  wing.receiveShadow = true;
-  this.mesh.add(wing);
-
-  const propellerGeometry = new THREE.BoxGeometry(20, 10, 10);
-  const propellerMaterial = new THREE.MeshPhongMaterial({
-    color: color.brown,
-    flatShading: true,
-  });
-  this.propeller = new THREE.Mesh(propellerGeometry, propellerMaterial);
-  this.propeller.castShadow = true;
-  this.propeller.receiveShadow = true;
-
-  const propellerShaftGeom = new THREE.BoxGeometry(1, 100, 20);
-  const propellerShaftMat = new THREE.MeshPhongMaterial({
-    color: color.darkBrown,
-    flatShading: true,
+  useFrame(() => {
+    ref.current.rotation.z = 33;
   });
 
-  const propellerShaft = new THREE.Mesh(propellerShaftGeom, propellerShaftMat);
-  propellerShaft.position.set(8, 0, 0);
-  propellerShaft.castShadow = true;
-  propellerShaft.receiveShadow = true;
-  this.propeller.add(propellerShaft);
-  this.propeller.position.set(50, 0, 0);
-  this.mesh.add(this.propeller);
+  return (
+    <mesh castShadow receiveShadow ref={ref}>
+      <cylinderGeometry args={[30, 40, 80]} />
+      <meshPhongMaterial color={airplaneColor} flatShading />
+    </mesh>
+  );
 }
+
+export function Engine() {
+  return (
+    <mesh position-x={40} castShadow receiveShadow>
+      <boxGeometry args={[20, 50, 50]} />
+      <meshPhongMaterial color={color.white} flatShading />
+    </mesh>
+  );
+}
+
+export function Wing(props) {
+  const { airplaneColor } = props;
+  return (
+    <mesh castShadow receiveShadow>
+      <boxGeometry args={[40, 8, 150]} />
+      <meshPhongMaterial color={airplaneColor} flatShading />
+    </mesh>
+  );
+}
+
+export function Propeller() {
+  return (
+    <mesh position-x={50} castShadow receiveShadow>
+      <boxGeometry args={[20, 10, 10]} />
+      <meshPhongMaterial color={color.brown} flatShading />
+      <PropellerShaft />
+    </mesh>
+  );
+}
+
+function PropellerShaft() {
+  let r = useRef();
+  useFrame(() => {
+    r.current.rotation.x += 0.3;
+  });
+
+  return (
+    <mesh position-x={6} castShadow receiveShadow ref={r}>
+      <boxGeometry args={[1, 80, 13]} />
+      <meshPhongMaterial color={color.brown} flatShading />
+    </mesh>
+  );
+}
+
+export const Plane = forwardRef((props) => {
+  const { airplaneColor } = props;
+  return (
+    <group scale={0.05}>
+      <Cabin airplaneColor={airplaneColor} />
+      <Engine />
+      <Wing airplaneColor={airplaneColor} />
+      <Propeller />
+    </group>
+  );
+});

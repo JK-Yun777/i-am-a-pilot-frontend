@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 
-import Hearder from "./Hearder";
+import Hearder from "../components/Header";
 import Login from "./Login";
 
 function Main() {

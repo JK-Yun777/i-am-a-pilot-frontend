@@ -5,7 +5,7 @@ import { Html } from "@react-three/drei";
 import { useStore } from "../utils/store";
 import ProgressBar from "../components/ProgressBar";
 
-function Hearder(props) {
+function GameHearder(props) {
   let initialEnergy = "85";
   const startTime = new Date();
   const memoizedTime = useMemo(() => startTime, [startTime]);
@@ -72,4 +72,4 @@ function Hearder(props) {
   );
 }
 
-export default Hearder;
+export default GameHearder;
