@@ -45,6 +45,7 @@ function KakaoRedirectHandler() {
       if (result.status === 201 || result.status === 200) {
         const user = result.data.data;
         login(user);
+        localStorage.setItem("user", user);
         history.push("/select");
       } else {
         console.log("로그인에 실패하였습니다.");

@@ -3,7 +3,6 @@ import React, { Suspense, useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/cannon";
-import { PresentationControls } from "@react-three/drei";
 
 import { useStore } from "../utils/store";
 import { sendGameResult } from "../api";
@@ -65,19 +64,12 @@ function Game() {
         <ambientLight intensity={0.5} />
         <directionalLight castShadow position={[0, 10, 0]} intensity={0.5} />
         <Suspense fallback={null}>
-          <PresentationControls
-            global
-            config={{ mass: 2, tension: 500 }}
-            snap={{ mass: 4, tension: 1500 }}
-            polar={[-Math.PI / 3, Math.PI / 3]}
-            azimuth={[-Math.PI / 1.4, Math.PI / 2]}
-          >
-            <GameHearder
-              position={[-5, 14, 0]}
-              scale={0.001}
-              setRemainEnergy={setRemainEnergy}
-            />
-          </PresentationControls>
+          <GameHearder
+            position={[-5, 14, 0]}
+            scale={0.001}
+            setRemainEnergy={setRemainEnergy}
+          />
+
           {!startup && !isGameOver && (
             <Physics
               defaultContactMaterial={{
@@ -86,9 +78,9 @@ function Game() {
               }}
               gravity={[0, -5, 0]}
             >
-              <AirPlane />
-              <BonusObjects />
-              <Clouds />
+              <AirPlane dispose={null} />
+              <BonusObjects dispose={null} />
+              <Clouds dispose={null} />
               <Ground position={[0, -290, -70]} rotationSpeed={0.01} />
             </Physics>
           )}

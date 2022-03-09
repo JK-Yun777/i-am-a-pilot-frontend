@@ -26,7 +26,7 @@ function Heart(props) {
     return [heartShape, { depth: 0.3, bevelEnabled: false }];
   }, []);
   return (
-    <group {...props} ref={ref}>
+    <group {...props} ref={ref} dispose={null}>
       <Extrude
         position={[0.125, 0.2, 0]}
         rotation={[0, 0, Math.PI]}

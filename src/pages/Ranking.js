@@ -21,12 +21,13 @@ function Ranking() {
   const goToGame = () => {
     reset();
     stopRankBg();
-    history.push("/game");
+    window.location.replace("/game");
   };
 
   const goToMain = () => {
     logout();
     stopRankBg();
+    localStorage.removeItem("user");
     history.push("/");
   };
   return (
@@ -43,14 +44,14 @@ function Ranking() {
       <Suspense fallback={null}>
         <Header position={[-5, 14, 0]} scale={0.001} hearderTitle={"Rank"} />
         <Text
-          position={[-2.5, 6, 0]}
+          position={[-2.8, 6, 0]}
           scale={10}
           color={color.rankTitle}
           onClick={goToGame}
         >
           RESTART
         </Text>
-        <Text position={[0, 6, 0]} scale={12} color={color.rankTitle}>
+        <Text position={[-0.1, 6, 0]} scale={12} color={color.rankTitle}>
           |
         </Text>
         <Text

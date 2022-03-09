@@ -11,8 +11,8 @@ function Rock(props) {
     ...props,
   }));
   return (
-    <Sphere castShadow ref={ref} args={[1, 64, 64]}>
-      <meshStandardMaterial color={color.red} />
+    <Sphere castShadow ref={ref} args={[1, 64, 64]} dispose={null}>
+      <meshStandardMaterial color={color.red} dispose={null} />
     </Sphere>
   );
 }

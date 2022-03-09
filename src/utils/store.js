@@ -6,17 +6,17 @@ import bgAudio from "../assets/music/GameBg.mp3";
 import rankAudio from "../assets/music/RankingBg.mp3";
 import bonusAudio from "../assets/music/BonusHit.mp3";
 
-const clock = new THREE.Clock();
+let clock = new THREE.Clock();
 const bg = new Audio(bgAudio);
 const rankBg = new Audio(rankAudio);
 const bonusBg = new Audio(bonusAudio);
-bg.currentTime = 0;
 bg.loop = true;
 rankBg.loop = true;
 
 const useStore = create((set) => ({
   distance: 0,
   points: 0,
+  hit: false,
   startup: true,
   restart: false,
   userEmail: false,
@@ -33,6 +33,7 @@ const useStore = create((set) => ({
     rankBg.currentTime = 0;
   },
   start: () => {
+    clock = new THREE.Clock();
     set({ startup: false });
     bg.play();
   },
@@ -43,7 +44,13 @@ const useStore = create((set) => ({
     set({ userEmail: data });
   },
   logout: () => {
-    set({ userEmail: false });
+    set({
+      userEmail: false,
+      points: 0,
+      distance: 0,
+      startup: true,
+      restart: true,
+    });
   },
   getDistance: (time) => {
     if (time) {

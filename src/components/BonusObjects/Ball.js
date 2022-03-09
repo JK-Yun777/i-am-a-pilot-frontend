@@ -14,6 +14,7 @@ function Ball(props) {
     ...props,
   }));
   const restart = useStore((state) => state.restart);
+
   useEffect(() => {
     if (restart) {
       api.position.set(0, 3, 0);
@@ -22,9 +23,11 @@ function Ball(props) {
     }
   }, [restart]);
   return (
-    <Sphere castShadow ref={ref} args={[0.4, 64, 64]}>
-      <meshStandardMaterial color={color.pink} />
-    </Sphere>
+    <>
+      <Sphere castShadow ref={ref} args={[0.4, 64, 64]} dispose={null}>
+        <meshStandardMaterial color={color.pink} dispose={null} />
+      </Sphere>
+    </>
   );
 }
 

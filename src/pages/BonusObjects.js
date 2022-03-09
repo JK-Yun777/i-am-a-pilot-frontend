@@ -20,15 +20,7 @@ function BonusObjects() {
   const restart = useStore((state) => state.restart);
 
   useEffect(() => {
-    if (distance % 2) {
-      positions.push([Math.random() * 20, Math.random() * 10, 0]);
-    }
-
-    positions.push([Math.random() * -20, Math.random() * 20, Math.random()]);
-  }, [distance, positions]);
-
-  useEffect(() => {
-    if (restart) {
+    if (restart || positions.length > 20) {
       positions = [
         [9, 5, 0],
         [-9, 10, 0],
@@ -41,14 +33,18 @@ function BonusObjects() {
         [8, 5, -10],
       ];
     }
-  }, [restart]);
+
+    if (distance % 2) {
+      positions.push([Math.random() * 20, Math.random() * 10, 0]);
+    }
+
+    positions.push([Math.random() * -20, Math.random() * 20, Math.random()]);
+  }, [distance, positions, restart]);
 
   return (
     <>
       {positions.map((position, idx) => (
-        <>
-          <Bonus position={position} key={idx} />
-        </>
+        <Bonus position={position} key={idx} dispose={null} />
       ))}
     </>
   );
