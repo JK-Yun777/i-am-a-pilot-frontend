@@ -8,7 +8,7 @@ import ProgressBar from "../components/ProgressBar";
 function GameHearder(props) {
   let initialEnergy = "85";
   const startTime = new Date();
-  const memoizedTime = useMemo(() => startTime, [startTime]);
+  let memoizedTime = useMemo(() => startTime, [startTime]);
   const [runningTime, setRunningTime] = useState(memoizedTime);
   const [energy, setEnergy] = useState(initialEnergy);
 
@@ -32,6 +32,7 @@ function GameHearder(props) {
 
     if (energy < 1) {
       clearInterval(interval);
+      memoizedTime = 0;
     }
 
     if (setRemainEnergy) {

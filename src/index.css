@@ -166,3 +166,9 @@ body,
   margin-right: 10px;
   background-color: #bf211e;
 }
+
+.google-login-btn {
+  border: 1px solid red;
+  background-color: white;
+  width: 300px;
+}

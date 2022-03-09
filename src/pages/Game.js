@@ -23,6 +23,7 @@ function Game() {
   const userEmail = useStore((state) => state.userEmail);
   const distance = useStore((state) => state.distance);
   const start = useStore((state) => state.start);
+  const stopGameBg = useStore((state) => state.stopGameBg);
   const history = useHistory();
 
   useEffect(() => {
@@ -32,15 +33,22 @@ function Game() {
   }, [remainEnergy]);
 
   useEffect(async () => {
+    let timer;
     if (isGameOver) {
       try {
-        const res = await sendGameResult(userEmail, distance);
-        console.log(res);
-        history.push("/rank");
+        await sendGameResult(userEmail, distance);
+        stopGameBg();
+        timer = setTimeout(() => {
+          history.push("/rank");
+        }, 3000);
       } catch (err) {
         console.log(err);
       }
     }
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [isGameOver]);
 
   return (

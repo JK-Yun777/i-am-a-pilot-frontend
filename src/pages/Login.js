@@ -2,13 +2,46 @@ import { useRef } from "react";
 
 import { useFrame } from "@react-three/fiber";
 import { Html } from "@react-three/drei";
+import { GoogleLogin } from "react-google-login";
+
+import { GoogleSocialLogin } from "../api";
+import { useStore } from "../utils/store";
 
 const CLIENT_ID = process.env.REACT_APP_KAKAO_REST_API_KEY;
 const REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI;
 const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+
+const customBtnStyle = {
+  width: "0",
+  border: "none",
+  cursor: "pointer",
+};
+
+const customImgStyle = {
+  width: "300px",
+  height: "50px",
+};
 
 function Login(props) {
   const ref = useRef();
+  const login = useStore((state) => state.login);
+  const { setGoogleEmail } = props;
+
+  const handleGoogleLogin = async (googleResponse) => {
+    const {
+      profileObj: { email },
+    } = googleResponse;
+
+    login(email);
+
+    const result = await GoogleSocialLogin(email);
+    setGoogleEmail(result.data.data);
+  };
+
+  const handleLoginError = () => {
+    console.log("Login failed. Please try again. Or try another email.");
+  };
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
@@ -23,13 +56,28 @@ function Login(props) {
         <Html
           scale={100}
           rotation={[Math.PI / 2, 0, 0]}
-          position={[90, -350, 50]}
+          position={[10, -350, 50]}
           transform
           occlude
         >
           <a href={KAKAO_AUTH_URL}>
             <div className="kakao-login-btn" />
           </a>
+          <GoogleLogin
+            clientId={GOOGLE_CLIENT_ID}
+            onSuccess={handleGoogleLogin}
+            onFailure={handleLoginError}
+            render={(renderProps) => (
+              <button
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+                style={customBtnStyle}
+              >
+                <img src="/img/GoogleLoginBtn.png" style={customImgStyle} />
+              </button>
+            )}
+            buttonText="Login"
+          />
         </Html>
       </mesh>
     </group>

@@ -12,13 +12,21 @@ import Rank from "../components/Rank";
 function Ranking() {
   const history = useHistory();
   const logout = useStore((state) => state.logout);
+  const reset = useStore((state) => state.reset);
+  const startRankBg = useStore((state) => state.startRankBg);
+  const stopRankBg = useStore((state) => state.stopRankBg);
+
+  startRankBg();
 
   const goToGame = () => {
+    reset();
+    stopRankBg();
     history.push("/game");
   };
 
   const goToMain = () => {
     logout();
+    stopRankBg();
     history.push("/");
   };
   return (
