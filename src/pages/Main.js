@@ -1,9 +1,21 @@
+import { useState, useEffect } from "react";
+
+import { useHistory } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
 
 import Hearder from "../components/Header";
 import Login from "./Login";
 
 function Main() {
+  const [googleEmail, setGoogleEmail] = useState("");
+  const history = useHistory();
+
+  useEffect(() => {
+    if (googleEmail) {
+      history.push("/select");
+    }
+  }, [googleEmail]);
+
   return (
     <Canvas
       className="canvas"
@@ -19,6 +31,7 @@ function Main() {
         rotation={[-Math.PI / 2, 0, 0]}
         position={[0, 0.25, 0]}
         scale={0.015}
+        setGoogleEmail={setGoogleEmail}
       />
     </Canvas>
   );

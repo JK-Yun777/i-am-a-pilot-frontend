@@ -29,6 +29,19 @@ export const kakaoLogin = async (token) => {
   return result;
 };
 
+export const GoogleSocialLogin = async (email) => {
+  const url = `${process.env.REACT_APP_SERVER_URL}/login/google`;
+  const result = await axios({
+    url,
+    method: "post",
+    data: {
+      email,
+    },
+  });
+
+  return result;
+};
+
 export const sendGameResult = async (email, distance) => {
   const url = `${process.env.REACT_APP_SERVER_URL}/user/distance`;
   const result = await axios({

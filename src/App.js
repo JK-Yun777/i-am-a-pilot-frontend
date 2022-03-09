@@ -5,8 +5,11 @@ import Main from "./pages/Main";
 import Game from "./pages/Game";
 import Ranking from "./pages/Ranking";
 import Select from "./pages/Select";
+import { useStore } from "./utils/store";
 
 function App() {
+  const userEmail = useStore((state) => state.userEmail);
+
   return (
     <BrowserRouter>
       <Switch>
@@ -17,7 +20,7 @@ function App() {
           <KakaoRedirectHandler />
         </Route>
         <Route path="/game" exact>
-          <Game />
+          {userEmail ? <Game /> : <Main />}
         </Route>
         <Route path="/rank" exact>
           <Ranking />

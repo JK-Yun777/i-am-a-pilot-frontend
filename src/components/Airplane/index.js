@@ -63,10 +63,10 @@ function PropellerShaft() {
   );
 }
 
-export const Plane = forwardRef((props) => {
+export const Plane = forwardRef((props, ref) => {
   const { airplaneColor } = props;
   return (
-    <group scale={0.05}>
+    <group scale={0.05} ref={ref}>
       <Cabin airplaneColor={airplaneColor} />
       <Engine />
       <Wing airplaneColor={airplaneColor} />
