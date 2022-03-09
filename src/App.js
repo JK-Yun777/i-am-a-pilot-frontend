@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import KakaoRedirectHandler from "./components/KakaoRedirectHandler";
@@ -9,12 +11,20 @@ import { useStore } from "./utils/store";
 
 function App() {
   const userEmail = useStore((state) => state.userEmail);
+  const login = useStore((state) => state.login);
+  const userInfo = localStorage.getItem("user");
+
+  useEffect(() => {
+    if (userInfo) {
+      login(userInfo);
+    }
+  }, [userInfo]);
 
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact>
-          <Main />
+          {userEmail ? <Game /> : <Main />}
         </Route>
         <Route path="/oauth/callback/kakao" exact>
           <KakaoRedirectHandler />

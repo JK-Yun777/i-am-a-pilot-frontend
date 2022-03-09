@@ -34,7 +34,7 @@ function Login(props) {
     } = googleResponse;
 
     login(email);
-
+    localStorage.setItem("user", email);
     const result = await GoogleSocialLogin(email);
     setGoogleEmail(result.data.data);
   };

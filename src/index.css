@@ -15,10 +15,12 @@ body,
 
 .canvas {
   background: linear-gradient(#aacff1, #ebecb6);
+  touch-action: none;
 }
 
 .ranking-canvas {
   background: linear-gradient(#40474e, #727261);
+  touch-action: none;
 }
 
 .header {
@@ -93,7 +95,6 @@ body,
   background-repeat: no-repeat;
   background-size: cover;
   margin: 10px auto;
-  /* padding: -10px; */
   color: transparent;
   width: 300px;
   height: 45px;
@@ -112,7 +113,6 @@ body,
   font-family: "Playfair Display";
   font-size: 3.5em;
   line-height: 1;
-  /* margin: 1em 0 0.3em 0; */
   white-space: nowrap;
   letter-spacing: -0.025em;
   color: #d1b790;
@@ -143,32 +143,27 @@ body,
   color: #90aed1;
 }
 
-#blue {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-  background-color: #80ced7;
-}
-
-#flax {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-  background-color: #e9d985;
-}
-
-#red {
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-  background-color: #bf211e;
-}
-
 .google-login-btn {
   border: 1px solid red;
   background-color: white;
   width: 300px;
+}
+
+.game-info {
+  width: 700px;
+  font-family: "Playfair Display";
+  font-size: 1.5em;
+  line-height: 1;
+  margin: 0 0 0.3em 2em;
+  letter-spacing: -0.025em;
+  color: #d1b790;
+}
+
+.game-rule {
+  padding: 0.2em 0 0.2em 0;
+}
+
+.game-rule-volume {
+  font-size: 0.8em;
+  margin-top: 0.5em;
 }

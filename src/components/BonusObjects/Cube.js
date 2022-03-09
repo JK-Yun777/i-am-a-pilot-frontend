@@ -11,8 +11,8 @@ function Cube(props) {
   }));
   return (
     <mesh receiveShadow castShadow ref={ref}>
-      <boxGeometry />
-      <meshLambertMaterial color={color.hotpink} />
+      <boxGeometry dispose={null} />
+      <meshLambertMaterial color={color.hotpink} dispose={null} />
     </mesh>
   );
 }
