@@ -10,6 +10,7 @@ function Rock(props) {
     rotation: [0.4, 0.2, 0.5],
     ...props,
   }));
+
   return (
     <Sphere castShadow ref={ref} args={[1, 64, 64]} dispose={null}>
       <meshStandardMaterial color={color.red} dispose={null} />

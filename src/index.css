@@ -91,7 +91,7 @@ body,
 }
 
 .kakao-login-btn {
-  background-image: url("/src/images/kakao_login_medium_wide.png");
+  background-image: url("/public/img/kakao_login_medium_wide.png");
   background-repeat: no-repeat;
   background-size: cover;
   margin: 10px auto;

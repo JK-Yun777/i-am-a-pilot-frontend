@@ -10,6 +10,7 @@ import { Cabin, Engine, Wing, Propeller } from "../Airplane";
 function SelectAirplaneColor() {
   const [airplaneColor, setAirplaneColor] = useState(color.red);
   const setColor = useStore((state) => state.setColor);
+  const ref = useRef();
 
   const handleRed = () => {
     setAirplaneColor(color.red);
@@ -31,7 +32,6 @@ function SelectAirplaneColor() {
     setColor("#0000FF");
   };
 
-  const ref = useRef();
   useFrame(() => {
     ref.current.rotation.x =
       ref.current.rotation.y =

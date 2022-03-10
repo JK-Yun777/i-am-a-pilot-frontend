@@ -1,4 +1,4 @@
-import { useRef, Suspense, useState, useEffect } from "react";
+import React, { useRef, Suspense, useState, useEffect } from "react";
 
 import { useFrame } from "@react-three/fiber";
 import { Text } from "@react-three/drei";
@@ -44,15 +44,9 @@ function Rank() {
       try {
         const response = await getRankList();
 
-        // if (response === "Request failed with status code 401") {
-        //   history.push("/login");
-        //   return;
-        // }
-
         setRankList(response.data.rankList);
       } catch (err) {
         console.error(err);
-        return err.message;
       }
     }
 
@@ -65,6 +59,7 @@ function Rank() {
     const t3 = setTimeout(() => setThree(true), 3000);
     const t4 = setTimeout(() => setFour(true), 4000);
     const t5 = setTimeout(() => setFive(true), 5000);
+
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
@@ -73,6 +68,7 @@ function Rank() {
       clearTimeout(t5);
     };
   }, []);
+
   return (
     <Suspense fallback={null}>
       {one && (

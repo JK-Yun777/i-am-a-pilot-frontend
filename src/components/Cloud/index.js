@@ -14,6 +14,7 @@ export const particles = Array.from({ length: 30 }, () => ({
 
 export function Cloud({ factor, speed, xFactor, yFactor, zFactor }) {
   const ref = useRef();
+
   useFrame((state) => {
     const t = factor + state.clock.elapsedTime * (speed / 2);
     ref.current.scale.setScalar(Math.max(1.5, Math.cos(t) * 5));
@@ -35,5 +36,6 @@ export function Cloud({ factor, speed, xFactor, yFactor, zFactor }) {
         (Math.sin(t * 3) * factor) / 10
     );
   });
+
   return <Instance ref={ref} />;
 }

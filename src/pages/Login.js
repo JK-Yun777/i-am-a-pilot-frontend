@@ -1,11 +1,11 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 
-import { useFrame } from "@react-three/fiber";
-import { Html } from "@react-three/drei";
+import { Html, Float } from "@react-three/drei";
 import { GoogleLogin } from "react-google-login";
 
-import { GoogleSocialLogin } from "../api";
-import { useStore } from "../utils/store";
+import { googleSocialLogin } from "../api";
+import { color } from "../utils/color";
+import { Plane, Cable } from "../components/Airplane";
 
 const CLIENT_ID = process.env.REACT_APP_KAKAO_REST_API_KEY;
 const REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI;
@@ -25,7 +25,7 @@ const customImgStyle = {
 
 function Login(props) {
   const ref = useRef();
-  const login = useStore((state) => state.login);
+  const plane = useRef();
   const { setGoogleEmail } = props;
 
   const handleGoogleLogin = async (googleResponse) => {
@@ -33,54 +33,68 @@ function Login(props) {
       profileObj: { email },
     } = googleResponse;
 
-    login(email);
     localStorage.setItem("user", email);
-    const result = await GoogleSocialLogin(email);
-    setGoogleEmail(result.data.data);
+
+    const result = await googleSocialLogin(email);
+
+    if (result.status === 201 || result.status === 200) {
+      const user = result.data.data;
+      localStorage.setItem("user", user);
+      setGoogleEmail(result.data.data);
+    } else {
+      console.log("Login failed. Please try again. Or try another email.");
+    }
   };
 
   const handleLoginError = () => {
     console.log("Login failed. Please try again. Or try another email.");
   };
 
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime();
-    ref.current.rotation.x = -Math.PI / 1.75 + Math.cos(t / 4) / 8;
-    ref.current.rotation.y = Math.sin(t / 4) / 8;
-    ref.current.rotation.z = (1 + Math.sin(t / 1.5)) / 20;
-    ref.current.position.y = (1 + Math.sin(t / 1.5)) / 10;
-  });
   return (
-    <group ref={ref} {...props} dispose={null}>
-      <mesh>
-        <Html
-          scale={100}
-          rotation={[Math.PI / 2, 0, 0]}
-          position={[10, -350, 50]}
-          transform
-          occlude
-        >
-          <a href={KAKAO_AUTH_URL}>
-            <div className="kakao-login-btn" />
-          </a>
-          <GoogleLogin
-            clientId={GOOGLE_CLIENT_ID}
-            onSuccess={handleGoogleLogin}
-            onFailure={handleLoginError}
-            render={(renderProps) => (
-              <button
-                onClick={renderProps.onClick}
-                disabled={renderProps.disabled}
-                style={customBtnStyle}
-              >
-                <img src="/img/GoogleLoginBtn.png" style={customImgStyle} />
-              </button>
-            )}
-            buttonText="Login"
-          />
-        </Html>
-      </mesh>
-    </group>
+    <>
+      <Float scale={0.75} position={[-12, -6, 0]} rotation={[-3.8, -1.5, -9.5]}>
+        <Plane ref={plane} airplaneColor={color.red} />
+      </Float>
+      <Float
+        position={[0, 3, 0]}
+        rotation={[Math.PI / 28.5, 0, 0]}
+        rotationIntensity={1}
+        floatIntensity={10}
+        speed={0.5}
+      >
+        <group ref={ref} {...props} dispose={null}>
+          <mesh>
+            <Html
+              scale={90}
+              rotation={[Math.PI / 2, 0, 0]}
+              position={[10, -350, 50]}
+              transform
+              occlude
+            >
+              <a href={KAKAO_AUTH_URL}>
+                <div className="kakao-login-btn" />
+              </a>
+              <GoogleLogin
+                clientId={GOOGLE_CLIENT_ID}
+                onSuccess={handleGoogleLogin}
+                onFailure={handleLoginError}
+                render={(renderProps) => (
+                  <button
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                    style={customBtnStyle}
+                  >
+                    <img src="/img/GoogleLoginBtn.png" style={customImgStyle} />
+                  </button>
+                )}
+                buttonText="Login"
+              />
+            </Html>
+          </mesh>
+        </group>
+      </Float>
+      <Cable start={plane} end={ref} />
+    </>
   );
 }
 

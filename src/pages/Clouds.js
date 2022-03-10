@@ -19,6 +19,7 @@ function Clouds() {
         delta
       ))
   );
+
   return (
     <Instances
       limit={particles.length}
