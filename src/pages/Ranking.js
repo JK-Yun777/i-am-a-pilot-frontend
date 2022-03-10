@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 
 import { useHistory } from "react-router";
 import { Canvas } from "@react-three/fiber";
@@ -30,6 +30,7 @@ function Ranking() {
     localStorage.removeItem("user");
     history.push("/");
   };
+
   return (
     <Canvas
       className="ranking-canvas"

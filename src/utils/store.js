@@ -19,7 +19,6 @@ const useStore = create((set) => ({
   hit: false,
   startup: true,
   restart: false,
-  userEmail: false,
   airplaneColor: color.red,
   stopGameBg: () => {
     bg.pause();
@@ -39,9 +38,6 @@ const useStore = create((set) => ({
   },
   setColor: (data) => {
     set({ airplaneColor: data });
-  },
-  login: (data) => {
-    set({ userEmail: data });
   },
   logout: () => {
     set({

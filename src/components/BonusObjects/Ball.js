@@ -22,6 +22,7 @@ function Ball(props) {
       api.angularVelocity.set(0, 0, 0);
     }
   }, [restart]);
+
   return (
     <>
       <Sphere castShadow ref={ref} args={[0.4, 64, 64]} dispose={null}>

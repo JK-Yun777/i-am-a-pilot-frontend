@@ -11,19 +11,18 @@ function GameHearder(props) {
   let memoizedTime = useMemo(() => startTime, [startTime]);
   const [runningTime, setRunningTime] = useState(memoizedTime);
   const [energy, setEnergy] = useState(initialEnergy);
-
   const points = useStore((state) => state.points);
   const distance = useStore((state) => state.distance);
   const startup = useStore((state) => state.startup);
   const getDistance = useStore((state) => state.getDistance);
 
   useEffect(() => {
-    let interval;
+    let timer;
     const { setRemainEnergy } = props;
     initialEnergy = Number(initialEnergy) + points * 0.5;
 
     if (!startup) {
-      interval = setInterval(() => {
+      timer = setInterval(() => {
         setRunningTime(memoizedTime);
         getDistance(runningTime);
         setEnergy(initialEnergy - distance);
@@ -31,7 +30,7 @@ function GameHearder(props) {
     }
 
     if (energy < 1) {
-      clearInterval(interval);
+      clearInterval(timer);
       memoizedTime = 0;
       startTime = new Date();
     }
@@ -41,7 +40,7 @@ function GameHearder(props) {
     }
 
     return () => {
-      clearInterval(interval);
+      clearInterval(timer);
     };
   }, [memoizedTime, points, energy]);
 

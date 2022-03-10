@@ -9,6 +9,7 @@ function Cube(props) {
     rotation: [0.4, 0.2, 0.5],
     ...props,
   }));
+
   return (
     <mesh receiveShadow castShadow ref={ref}>
       <boxGeometry dispose={null} />

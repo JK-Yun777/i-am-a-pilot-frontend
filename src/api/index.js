@@ -5,64 +5,81 @@ const REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI;
 
 export const getKakaoToken = async (code) => {
   const url = `https://kauth.kakao.com/oauth/token?grant_type=authorization_code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&code=${code}`;
-  const result = await axios({
-    url,
-    method: "post",
-    headers: {
-      "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
-    },
-  });
+  try {
+    const result = await axios({
+      url,
+      method: "post",
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded;charset=utf-8",
+      },
+    });
 
-  return result;
+    return result;
+  } catch (err) {
+    return err.message;
+  }
 };
 
 export const kakaoLogin = async (token) => {
   const url = `${process.env.REACT_APP_SERVER_URL}/login/kakao`;
-  const result = await axios({
-    url,
-    method: "post",
-    data: {
-      token,
-    },
-  });
+  try {
+    const result = await axios({
+      url,
+      method: "post",
+      data: {
+        token,
+      },
+    });
 
-  return result;
+    return result;
+  } catch (err) {
+    return err.message;
+  }
 };
 
-export const GoogleSocialLogin = async (email) => {
+export const googleSocialLogin = async (email) => {
   const url = `${process.env.REACT_APP_SERVER_URL}/login/google`;
-  const result = await axios({
-    url,
-    method: "post",
-    data: {
-      email,
-    },
-  });
+  try {
+    const result = await axios({
+      url,
+      method: "post",
+      data: {
+        email,
+      },
+    });
 
-  return result;
+    return result;
+  } catch (err) {
+    return err.message;
+  }
 };
 
-export const sendGameResult = async (email, distance) => {
+export const sendGameResult = async (userInfo, distance) => {
   const url = `${process.env.REACT_APP_SERVER_URL}/user/distance`;
-  const result = await axios({
-    url,
-    method: "post",
-    data: {
-      email,
-      distance,
-    },
-  });
+  try {
+    const result = await axios({
+      url,
+      method: "post",
+      data: {
+        userInfo,
+        distance,
+      },
+    });
 
-  return result;
+    return result;
+  } catch (err) {
+    return err.message;
+  }
 };
 
 export const getRankList = async () => {
   try {
-    const response = await axios({
+    const result = await axios({
       method: "get",
       url: `${process.env.REACT_APP_SERVER_URL}/user/rank`,
     });
-    return response;
+
+    return result;
   } catch (err) {
     return err.message;
   }

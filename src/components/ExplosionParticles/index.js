@@ -1,26 +1,19 @@
 import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
-import { useSphere } from "@react-three/cannon";
-
-import { color } from "../../utils/color";
+import { useBox } from "@react-three/cannon";
 
 const rfs = THREE.MathUtils.randFloatSpread;
-const sphereGeometry = new THREE.BoxBufferGeometry(0.6, 0.6, 0.6);
-const baubleMaterial = new THREE.MeshStandardMaterial({
-  color: color.red,
-  roughness: 0,
-  envMapIntensity: 0.2,
-});
 
 function ExplosionParticles({
   mat = new THREE.Matrix4(),
   vec = new THREE.Vector3(),
+  color,
 }) {
-  const [ref, api] = useSphere(() => ({
-    args: [1],
+  const [ref, api] = useBox(() => ({
+    args: [1, 1, 1],
     mass: 1,
-    angularDamping: 0.1,
-    linearDamping: 0.65,
+    angularDamping: 0.2,
+    linearDamping: 0.55,
     position: [rfs(-10), rfs(-10), rfs(-10)],
   }));
 
@@ -33,21 +26,18 @@ function ExplosionParticles({
           vec
             .setFromMatrixPosition(mat)
             .normalize()
-            .multiplyScalar(20)
+            .multiplyScalar(30)
             .toArray(),
           [0, 0, 0]
         );
     }
   });
+
   return (
-    <instancedMesh
-      ref={ref}
-      castShadow
-      receiveShadow
-      args={[null, null, 10]}
-      geometry={sphereGeometry}
-      material={baubleMaterial}
-    />
+    <instancedMesh ref={ref} castShadow receiveShadow args={[null, null, 10]}>
+      <boxGeometry args={[0.5, 0.5, 0.5]} />
+      <meshStandardMaterial color={color} roughness={3} />
+    </instancedMesh>
   );
 }
 

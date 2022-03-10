@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
@@ -7,16 +7,14 @@ import Main from "./pages/Main";
 import Game from "./pages/Game";
 import Ranking from "./pages/Ranking";
 import Select from "./pages/Select";
-import { useStore } from "./utils/store";
 
 function App() {
-  const userEmail = useStore((state) => state.userEmail);
-  const login = useStore((state) => state.login);
+  const [isLogin, setIsLogin] = useState(false);
   const userInfo = localStorage.getItem("user");
 
   useEffect(() => {
     if (userInfo) {
-      login(userInfo);
+      setIsLogin(true);
     }
   }, [userInfo]);
 
@@ -24,13 +22,13 @@ function App() {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact>
-          {userEmail ? <Game /> : <Main />}
+          <Main />
         </Route>
         <Route path="/oauth/callback/kakao" exact>
           <KakaoRedirectHandler />
         </Route>
         <Route path="/game" exact>
-          {userEmail ? <Game /> : <Main />}
+          {isLogin ? <Game /> : <Main />}
         </Route>
         <Route path="/rank" exact>
           <Ranking />

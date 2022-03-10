@@ -10,6 +10,7 @@ function Ground({ position, rotationSpeed }) {
   useFrame(() => {
     ref.current.rotation.x += rotationSpeed;
   });
+
   return (
     <group>
       <mesh

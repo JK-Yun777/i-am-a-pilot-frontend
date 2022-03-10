@@ -1,6 +1,8 @@
 import React, { useRef, forwardRef } from "react";
 
+import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
+import { QuadraticBezierLine } from "@react-three/drei";
 
 import { color } from "../../utils/color";
 
@@ -31,6 +33,7 @@ export function Engine() {
 
 export function Wing(props) {
   const { airplaneColor } = props;
+
   return (
     <mesh castShadow receiveShadow>
       <boxGeometry args={[40, 8, 150]} />
@@ -65,6 +68,7 @@ function PropellerShaft() {
 
 export const Plane = forwardRef((props, ref) => {
   const { airplaneColor } = props;
+
   return (
     <group scale={0.05} ref={ref}>
       <Cabin airplaneColor={airplaneColor} />
@@ -74,3 +78,23 @@ export const Plane = forwardRef((props, ref) => {
     </group>
   );
 });
+
+export function Cable({
+  start,
+  end,
+  v1 = new THREE.Vector3(),
+  v2 = new THREE.Vector3(),
+}) {
+  const ref = useRef();
+
+  useFrame(
+    () =>
+      ref.current.setPoints(
+        start.current.getWorldPosition(v1),
+        end.current.getWorldPosition(v2)
+      ),
+    []
+  );
+
+  return <QuadraticBezierLine ref={ref} lineWidth={1.5} color={color.red} />;
+}

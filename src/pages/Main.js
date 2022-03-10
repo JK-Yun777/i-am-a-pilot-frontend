@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useHistory } from "react-router-dom";
 import { Canvas } from "@react-three/fiber";
@@ -26,6 +26,7 @@ function Main() {
         fov: 70,
       }}
     >
+      <ambientLight intensity={0.5} />
       <Hearder position={[-5, 14, 0]} scale={0.001} />
       <Login
         rotation={[-Math.PI / 2, 0, 0]}

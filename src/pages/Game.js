@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState, useCallback } from "react";
 
 import { useHistory } from "react-router";
 import { Canvas } from "@react-three/fiber";
@@ -17,13 +17,30 @@ import GameOver from "../pages/GameOver";
 function Game() {
   const [remainEnergy, setRemainEnergy] = useState(null);
   const [isGameOver, setIsGameOver] = useState(false);
-
+  const history = useHistory();
   const startup = useStore((state) => state.startup);
-  const userEmail = useStore((state) => state.userEmail);
+  const userInfo = localStorage.getItem("user");
   const distance = useStore((state) => state.distance);
+  const restart = useStore((state) => state.restart);
   const start = useStore((state) => state.start);
   const stopGameBg = useStore((state) => state.stopGameBg);
-  const history = useHistory();
+  const reset = useStore((state) => state.reset);
+
+  const goToGame = useCallback((event) => {
+    if (event.keyCode === 27) {
+      reset();
+      stopGameBg();
+      window.location.replace("/game");
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("keydown", goToGame);
+
+    return () => {
+      document.removeEventListener("keydown", goToGame);
+    };
+  }, [goToGame]);
 
   useEffect(() => {
     if (remainEnergy !== null && remainEnergy < 1) {
@@ -35,11 +52,11 @@ function Game() {
     let timer;
     if (isGameOver) {
       try {
-        await sendGameResult(userEmail, distance);
+        await sendGameResult(userInfo, distance);
         stopGameBg();
         timer = setTimeout(() => {
           history.push("/rank");
-        }, 3000);
+        }, 2000);
       } catch (err) {
         console.log(err);
       }
@@ -69,8 +86,7 @@ function Game() {
             scale={0.001}
             setRemainEnergy={setRemainEnergy}
           />
-
-          {!startup && !isGameOver && (
+          {!startup && !isGameOver && !restart && (
             <Physics
               defaultContactMaterial={{
                 restitution: 1.07,

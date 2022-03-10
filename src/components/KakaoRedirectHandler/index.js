@@ -6,27 +6,23 @@ import { Html } from "@react-three/drei";
 
 import Hearder from "../../components/Header";
 import { getKakaoToken, kakaoLogin } from "../../api";
-import { useStore } from "../../utils/store";
 
 function KakaoRedirectHandler() {
+  const [content, setContent] = useState(text);
   const text = "Loading";
   const speed = 300;
-  const [content, setContent] = useState(text);
   const history = useHistory();
-
-  const login = useStore((state) => state.login);
-
   const code = new URL(window.location.href).searchParams.get("code");
 
   useEffect(() => {
-    let interval = setInterval(() => {
+    const timer = setInterval(() => {
       content === text + "..."
         ? setContent(content)
         : setContent((content) => content + ".");
     }, speed);
 
-    return function cleanUp() {
-      clearInterval(interval);
+    return () => {
+      clearInterval(timer);
     };
   });
 
@@ -44,11 +40,10 @@ function KakaoRedirectHandler() {
 
       if (result.status === 201 || result.status === 200) {
         const user = result.data.data;
-        login(user);
         localStorage.setItem("user", user);
         history.push("/select");
       } else {
-        console.log("로그인에 실패하였습니다.");
+        console.log("Login failed. Please try again. Or try another email.");
       }
     } catch (err) {
       console.log(err);

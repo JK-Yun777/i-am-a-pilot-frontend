@@ -4,7 +4,7 @@ import * as THREE from "three";
 import { useSphere } from "@react-three/cannon";
 import { Extrude } from "@react-three/drei";
 
-function Heart(props) {
+function MiniHeart(props) {
   const [ref] = useSphere(() => ({
     mass: 1,
     position: [0, 5, 0],
@@ -30,7 +30,7 @@ function Heart(props) {
     <group {...props} ref={ref} dispose={null}>
       <Extrude
         rotation={[0, 0, Math.PI]}
-        scale={[2, 2, 2]}
+        scale={[1, 1, 1]}
         args={extrusionProps}
         material-color={props.color}
       />
@@ -38,4 +38,4 @@ function Heart(props) {
   );
 }
 
-export default Heart;
+export default MiniHeart;
