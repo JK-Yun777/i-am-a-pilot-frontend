@@ -143,12 +143,6 @@ body,
   color: #90aed1;
 }
 
-.google-login-btn {
-  border: 1px solid red;
-  background-color: white;
-  width: 300px;
-}
-
 .game-info {
   width: 700px;
   font-family: "Playfair Display";
