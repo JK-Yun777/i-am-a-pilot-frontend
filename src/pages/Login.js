@@ -36,7 +36,7 @@ function Login(props) {
     localStorage.setItem("user", email);
 
     const result = await googleSocialLogin(email);
-
+    console.log("회신", result);
     if (result.status === 201 || result.status === 200) {
       const user = result.data.data;
       localStorage.setItem("user", user);
@@ -46,7 +46,8 @@ function Login(props) {
     }
   };
 
-  const handleLoginError = () => {
+  const handleLoginError = (err) => {
+    console.log("err Detail", err);
     console.log("Login failed. Please try again. Or try another email.");
   };
 
