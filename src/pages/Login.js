@@ -40,6 +40,7 @@ function Login(props) {
     if (result.status === 201 || result.status === 200) {
       const user = result.data.data;
       localStorage.setItem("user", user);
+      console.log("localstorage>>>>", localStorage.getItem("user"));
       setGoogleEmail(result.data.data);
     } else {
       console.log("Login failed. Please try again. Or try another email.");
