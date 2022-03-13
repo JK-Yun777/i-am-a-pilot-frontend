@@ -8,9 +8,9 @@ import Hearder from "../../components/Header";
 import { getKakaoToken, kakaoLogin } from "../../api";
 
 function KakaoRedirectHandler() {
-  const [content, setContent] = useState(text);
   const text = "Loading";
   const speed = 300;
+  const [content, setContent] = useState(text);
   const history = useHistory();
   const code = new URL(window.location.href).searchParams.get("code");
 
