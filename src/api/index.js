@@ -39,6 +39,7 @@ export const kakaoLogin = async (token) => {
 };
 
 export const googleSocialLogin = async (email) => {
+  console.log("googleEmailAPI>>>>>.", email);
   const url = `${process.env.REACT_APP_SERVER_URL}/login/google`;
   try {
     const result = await axios({

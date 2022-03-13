@@ -34,7 +34,7 @@ function Login(props) {
     } = googleResponse;
 
     localStorage.setItem("user", email);
-
+    console.log("googleResponse>>>>>>", googleResponse);
     const result = await googleSocialLogin(email);
     console.log("회신", result);
     if (result.status === 201 || result.status === 200) {
