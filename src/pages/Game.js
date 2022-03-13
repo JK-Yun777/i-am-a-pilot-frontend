@@ -25,7 +25,7 @@ function Game() {
   const start = useStore((state) => state.start);
   const stopGameBg = useStore((state) => state.stopGameBg);
   const reset = useStore((state) => state.reset);
-
+  console.log("Game>>>>>>>>>>>.");
   const goToGame = useCallback((event) => {
     if (event.keyCode === 27) {
       reset();

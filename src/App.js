@@ -17,7 +17,7 @@ function App() {
       setIsLogin(true);
     }
   }, [userInfo]);
-
+  console.log("userInfo>>>>>>", userInfo);
   return (
     <BrowserRouter>
       <Switch>
