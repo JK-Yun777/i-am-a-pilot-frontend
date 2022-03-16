@@ -75,35 +75,35 @@ function Rank() {
         <RankList
           yinitial={-18}
           yPosition={2}
-          text={`1. ${rankingList[0].email} | Distance ${rankingList[0].distance}`}
+          text={`1. ${rankingList[0].userId} | Distance ${rankingList[0].distance}`}
         />
       )}
       {two && (
         <RankList
           yinitial={-21}
           yPosition={-1}
-          text={`2. ${rankingList[1].email} | Distance ${rankingList[1].distance}`}
+          text={`2. ${rankingList[1].userId} | Distance ${rankingList[1].distance}`}
         />
       )}
       {three && (
         <RankList
           yinitial={-24}
           yPosition={-4}
-          text={`3. ${rankingList[2].email} | Distance ${rankingList[2].distance}`}
+          text={`3. ${rankingList[2].userId} | Distance ${rankingList[2].distance}`}
         />
       )}
       {four && (
         <RankList
           yinitial={-27}
           yPosition={-7}
-          text={`4. ${rankingList[3].email} | Distance ${rankingList[3].distance}`}
+          text={`4. ${rankingList[3].userId} | Distance ${rankingList[3].distance}`}
         />
       )}
       {five && (
         <RankList
           yinitial={-30}
           yPosition={-10}
-          text={`5. ${rankingList[4].email} | Distance ${rankingList[4].distance}`}
+          text={`5. ${rankingList[4].userId} | Distance ${rankingList[4].distance}`}
         />
       )}
     </Suspense>
