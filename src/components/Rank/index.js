@@ -51,7 +51,6 @@ function Rank() {
     }
 
     fetchData();
-    console.log("rankingList>>>>>", rankingList);
   }, []);
 
   useEffect(() => {

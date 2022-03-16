@@ -19,6 +19,7 @@ const useStore = create((set) => ({
   hit: false,
   startup: true,
   restart: false,
+  userInfo: localStorage.getItem("user"),
   airplaneColor: color.red,
   stopGameBg: () => {
     bg.pause();
@@ -35,6 +36,9 @@ const useStore = create((set) => ({
     clock = new THREE.Clock();
     set({ startup: false });
     bg.play();
+  },
+  login: (data) => {
+    set({ userInfo: data });
   },
   setColor: (data) => {
     set({ airplaneColor: data });

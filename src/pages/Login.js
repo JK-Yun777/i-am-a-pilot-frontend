@@ -5,6 +5,7 @@ import { GoogleLogin } from "react-google-login";
 
 import { googleSocialLogin } from "../api";
 import { color } from "../utils/color";
+import { useStore } from "../utils/store";
 import { Plane, Cable } from "../components/Airplane";
 
 const CLIENT_ID = process.env.REACT_APP_KAKAO_REST_API_KEY;
@@ -27,6 +28,7 @@ function Login(props) {
   const ref = useRef();
   const plane = useRef();
   const { setGoogleEmail } = props;
+  const login = useStore((state) => state.login);
 
   const handleGoogleLogin = async (googleResponse) => {
     const {
@@ -34,21 +36,18 @@ function Login(props) {
     } = googleResponse;
 
     localStorage.setItem("user", email);
-    console.log("googleResponse>>>>>>", googleResponse);
+    login(email);
     const result = await googleSocialLogin(email);
-    console.log("회신", result);
     if (result.status === 201 || result.status === 200) {
       const user = result.data.data;
       localStorage.setItem("user", user);
-      console.log("localstorage>>>>", localStorage.getItem("user"));
       setGoogleEmail(result.data.data);
     } else {
       console.log("Login failed. Please try again. Or try another email.");
     }
   };
 
-  const handleLoginError = (err) => {
-    console.log("err Detail", err);
+  const handleLoginError = () => {
     console.log("Login failed. Please try again. Or try another email.");
   };
 

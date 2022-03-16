@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
+import { useStore } from "./utils/store";
 import KakaoRedirectHandler from "./components/KakaoRedirectHandler";
 import Main from "./pages/Main";
 import Game from "./pages/Game";
@@ -10,14 +11,14 @@ import Select from "./pages/Select";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
-  const userInfo = localStorage.getItem("user");
+  const userInfo = useStore((state) => state.userInfo);
 
   useEffect(() => {
     if (userInfo) {
       setIsLogin(true);
     }
-  }, [userInfo]);
-  console.log("userInfo>>>>>>", userInfo);
+  }, [userInfo, isLogin]);
+
   return (
     <BrowserRouter>
       <Switch>

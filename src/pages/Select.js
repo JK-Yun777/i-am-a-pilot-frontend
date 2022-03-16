@@ -12,7 +12,6 @@ import SelectAirplaneColor from "../components/SelectAirplaneColor";
 const AnimatedText = animated(Text);
 
 function Select() {
-  console.log("Select>>>>>>");
   const history = useHistory();
 
   const goToGame = () => {

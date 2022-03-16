@@ -6,12 +6,14 @@ import { Html } from "@react-three/drei";
 
 import Hearder from "../../components/Header";
 import { getKakaoToken, kakaoLogin } from "../../api";
+import { useStore } from "../../utils/store";
 
 function KakaoRedirectHandler() {
   const text = "Loading";
   const speed = 300;
   const [content, setContent] = useState(text);
   const history = useHistory();
+  const login = useStore((state) => state.login);
   const code = new URL(window.location.href).searchParams.get("code");
 
   useEffect(() => {
@@ -41,6 +43,7 @@ function KakaoRedirectHandler() {
       if (result.status === 201 || result.status === 200) {
         const user = result.data.data;
         localStorage.setItem("user", user);
+        login(user);
         history.push("/select");
       } else {
         console.log("Login failed. Please try again. Or try another email.");

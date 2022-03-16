@@ -16,6 +16,7 @@ function AirPlane() {
   const { viewport } = useThree();
   const { width, height } = viewport;
   const airplaneColor = useStore((state) => state.airplaneColor);
+  const points = useStore((state) => state.points);
 
   useEffect(() => {
     if (impact.get()) {
@@ -29,8 +30,7 @@ function AirPlane() {
     } else {
       setCriticalHit(false);
     }
-    console.log("HIT>>>>>>", isHited, criticalHit);
-  }, [isHited, impact, criticalHit]);
+  }, [isHited, criticalHit, points]);
 
   const [ref, api] = useBox(() => ({
     type: "Kinematic",
