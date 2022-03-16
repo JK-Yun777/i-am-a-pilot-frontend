@@ -29,6 +29,7 @@ function AirPlane() {
     } else {
       setCriticalHit(false);
     }
+    console.log("HIT>>>>>>", isHited, criticalHit);
   }, [isHited, impact, criticalHit]);
 
   const [ref, api] = useBox(() => ({
