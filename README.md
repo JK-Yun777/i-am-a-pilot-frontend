@@ -1,71 +1,96 @@
-# Getting Started with Create React App
+# 프로젝트 설명
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I am a pilot은 3D로 제작된 비행기를 조종하여 가장 멀리가는 유저가 승리하는 미니 게임입니다.
 
-## Available Scripts
+배포 주소: [https://www.jkproject-1.com/](https://www.jkproject-1.com/)
 
-In the project directory, you can run:
+# Features
 
-### `npm start`
+로그인 (카카오, 구글 로그인)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+비행기 선택 (색상 선택)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+게임 규칙 설명
 
-### `npm test`
+- 마우스로 비행기를 조종할 수 있습니다.
+- 시간이 경과함에 따라 에너지바가 감소하며, 0이 되면 게임이 종료됩니다.
+- 쏟아지는 보너스 타겟과 부딪히면 에너지가 증가합니다.
+- ESC 키를 누르면 게임이 종료됩니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+게임 진행
 
-### `npm run build`
+랭킹 (Distance 기준 가장 멀리간 상위 5위 유저)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# 프로젝트 진행 동기
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+부트캠프의 마지막 프로젝트는 그동안 배웠던 내용들을 바탕으로 도전적이며, 코딩하는 제가 즐거운 작업을 하고 싶었습니다.<br>
+4개월 동안의 여정을 뒤돌아 보니 과제를 진행하면서 시각적으로 즐거운 작업을 진행하면, 코딩할 때 더 재밌게 즐기면서 할 수 있었던 기억을 떠올릴 수 있었고 <br> 시각적인 즐거움을 줄 수 있는 소재를 찾던 중 Three,js라는 라이브러리를 접하게 되었습니다.<br>
+Three,js는 비교적 쉽게 3D 화면을 구현할 수 있는 라이브러리로 다양한 분야에 쓰이지만, 그중 게임에 최적화
+되어 있다고 생각되어 <br>I am a pilot을 제작하게 되었습니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# 기술 스택
 
-### `npm run eject`
+### Frontend
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- React-Three-fiber
+- React-Three-Drei
+- React-Three-cannon
+- Three.js
+- Zustand
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Backend
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Node.js
+- Express
+- MongoDB
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# 작업 기간
 
-## Learn More
+**총 기간 : 22. 02. 21 - 03. 13**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**1주차 (22. 02. 21 - 02. 27)**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 아이디어 선정
+- 기술 스택 검증
+- MockUP UI 제작
+- Task Card 제작
 
-### Code Splitting
+**2주차 (22. 02. 28 - 03. 06)**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- 프로젝트 메인 기능 구현
 
-### Analyzing the Bundle Size
+**3주차 (22. 03. 07 - 03. 13)**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- 게임 배경 음악 선정 작업
+- 리팩토링
+- 버그 픽스
+- 배포
 
-### Making a Progressive Web App
+# Challenge
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+이번 프로젝트는 저에게 모든 순간이 도전 이었지만 그 중 가장 어려웠던 점을 고르자면,
 
-### Advanced Configuration
+- **Three.js 란?**
+  React-Three-fiber를 사용하기 위해서는 Three.js라는 라이브러리를 반드시 알고 있어야만 했습니다.
+  처음 사용하는 라이브러리나 프레임워크라면 공식문서를 기본으로 봐야 할 것 같아 여러번 정독했지만
+  처음 들어보는 용어들도 너무 많아서 어느정도 익숙해지기까지 시간이 오래 걸렸습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **충돌 구현**
+  기획된 게임 시나리오 상 에너지바는 시간이 경과하면서 점점 감소하고 0이 되면 종료됩니다.
+  여기에 보너스 타켓과 부딪히면 에너지바가 증가하도록 짜여 졌습니다.
+  그러나 React-Three-fiber로 구현된 물체는 질량을 가지고 있지 않기 때문에 두 물체가 부딪히는 것이 아니라
+  그대로 통과하게 됩니다.
+  예상하지 못했던 상황이 벌어져서 해결할 방안을 찾던 중, React-Three-Cannon으로 물체에 질량을 주고
+  질량을 가진 두 물체가 부딪힐 때 발행하는 impact를 수치화해서 에너지가 증가하는 로직을 구현할 수 있었습니다.
 
-### Deployment
+# 소감
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# i-am-a-pilot-frontend
+프로젝트 주제를 확정하고 기술 스택을 공부하면서
+내가 할 수 있을까? 지금이라도 다른 아이디어로 변경해야하는건 아닐까? 정말 고민이 많았습니다.<br>
+그러나 부트캠프 과제 제출하던 금요일에 느꼈던, “못할 것 같았는데 이걸 또 완성했네?” 를
+개인 프로젝트 마지막날에도 또 경험하게 됐고 4개월의 대장정을 잘 마무리 할 수 있게 되었습니다.<br>
+진행하면서 동시 접속 기능, 비행기의 다양화 등 여러 아쉬운 점이 많았지만 그 중
+정말 쓰고 싶었던 배경 음악이 있었는데 저작권 때문에 사용하지 못한 아쉬움이 많이 남습니다.<br>
+(TMI, 게임 BG로 하울의 움직이는 성 중 공중산책 , 랭킹 BG로 스타워즈 오프닝 테마곡을 쓰고 싶었습니다!)<br>
+그러나 새내기 개발자로 시작하는 저는 앞으로도 계속 코드를 쓸 예정이므로
+이번 프로젝트의 아쉬움들을 다음번, 그리고 다다음번에는 해소할 수 있게 될 것이라고 기대합니다.
